@@ -20,10 +20,10 @@ abstract class BaseFragment<B: ViewDataBinding>(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        super.onCreateView(inflater, container, savedInstanceState)
         binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         return binding.root
     }
+
 
 }
 
