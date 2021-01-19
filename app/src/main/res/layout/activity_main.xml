@@ -11,15 +11,15 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".ui.MainActivity">
+            tools:context=".view.ui.main.MainActivity">
 
             <com.google.android.material.appbar.AppBarLayout
-                android:id="@+id/layout_appbar_main"
+                android:id="@+id/top_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.appbar.MaterialToolbar
                     android:id="@+id/toolbar_main"
@@ -27,41 +27,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:title="@string/app_name" />
+
             </com.google.android.material.appbar.AppBarLayout>
 
-            <TextView
-                android:id="@+id/headText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:text="작성자"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/layout_appbar_main" />
-
-            <com.github.chrisbanes.photoview.PhotoView
-                android:id="@+id/photo_view"
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/view_pager"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginTop="20dp"
-                android:background="@color/white"
-                android:scaleType="centerInside"
-                app:layout_constraintBottom_toTopOf="@id/bodyText"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/headText"
-                app:layout_constraintTop_toBottomOf="@id/headText" />
-
-            <TextView
-                android:id="@+id/bodyText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="50dp"
-                android:text="내용을 입력하시오."
                 app:layout_constraintBottom_toTopOf="@id/bottomAppBar"
-                app:layout_constraintStart_toStartOf="@id/photo_view"
-                app:layout_constraintTop_toBottomOf="@id/photo_view" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/top_bar" />
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottomAppBar"

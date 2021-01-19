@@ -1,4 +1,4 @@
-package com.example.junstagram.base
+package com.example.junstagram.view.base
 
 import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable

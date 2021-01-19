@@ -1,4 +1,4 @@
-package com.example.junstagram.base
+package com.example.junstagram.view.base
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
