@@ -17,6 +17,7 @@ import com.example.junstagram.databinding.HomeFragmentBinding
 import com.example.junstagram.model.PhotoPagedList
 import com.example.junstagram.service.ApplicationGetContext
 import com.example.junstagram.view.base.BaseFragment
+import kotlinx.coroutines.job
 
 class HomeFragment : BaseFragment<HomeFragmentBinding>(R.layout.home_fragment) {
     private val homeViewModel: HomeViewModel by viewModels()
@@ -24,10 +25,20 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(R.layout.home_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        homeViewModel.photoPagedList.observe(viewLifecycleOwner, Observer { it ->
+
+        homeViewModel.photoPagedList.observe(viewLifecycleOwner, Observer {
             binding.headText.text = it.title
             binding.photoView.setImageResource(it.image)
             binding.bodyText.text = it.bodyText
         })
+
+        homeViewModel.photoPagedList.value
+
+        homeViewModel.refreshFun()
+        //변화가 필요할 때
+        homeViewModel.testId.observe(viewLifecycleOwner, Observer {
+
+        })
+
     }
 }

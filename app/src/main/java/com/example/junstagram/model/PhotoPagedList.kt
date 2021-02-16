@@ -2,8 +2,8 @@ package com.example.junstagram.model
 
 import com.github.chrisbanes.photoview.PhotoView
 
-class PhotoPagedList(
-    var title: String?,
-    var image: Int,
-    var bodyText: String?
+data class PhotoPagedList(
+    val title: String?,
+    val image: Int,
+    val bodyText: String?
 )

@@ -3,24 +3,39 @@ package com.example.junstagram.view.ui.fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
+import androidx.lifecycle.viewModelScope
 import com.example.junstagram.model.PhotoPagedList
-import com.example.junstagram.repository.Repository
+import com.example.junstagram.repository.PhotoRepository
+import com.example.junstagram.repository.PhotoRepositoryImpl
 import com.example.junstagram.view.base.BaseViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class HomeViewModel: BaseViewModel() {
     //koin 사용 안하므로 일단 repo 클래스 생성
-    private var repository: Repository? = Repository()
+    private var photoRepository: PhotoRepository? = PhotoRepositoryImpl()
 
-    val photoPagedList = liveData<PhotoPagedList> {
-        repository?.listData()?.let {
-            emit(it)
+    //오로지 observing만 하도록 설정
+    private val _testId = MutableLiveData<PhotoPagedList>()
+    val testId: LiveData<PhotoPagedList> = _testId
+
+    //필요에 의해서 사용할 수 있음
+    init {
+
+    }
+
+    //viewModel scope coroutine
+    fun refreshFun() = viewModelScope.launch {
+        photoRepository?.listData()?.let {
+            //데이터 값 변경
+            _testId.value = it
         }
     }
 
-//    private val _id = MutableLiveData<Long>()
-//    //viewmodel에서만 접근.
-//    val id: LiveData<Long> = _id
-//    //view에서만 observer 가능.
-
-
+    //앱이 시작할 떄 한번만 호출할 경우
+    val photoPagedList = liveData<PhotoPagedList> {
+        photoRepository?.listData()?.let {
+            emit(it)
+        }
+    }
 }
