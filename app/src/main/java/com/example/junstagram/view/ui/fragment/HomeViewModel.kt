@@ -12,7 +12,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class HomeViewModel: BaseViewModel() {
-    //koin 사용 안하므로 일단 repo 클래스 생성
     private var photoRepository: PhotoRepository? = PhotoRepositoryImpl()
 
     //오로지 observing만 하도록 설정
@@ -21,7 +20,6 @@ class HomeViewModel: BaseViewModel() {
 
     //필요에 의해서 사용할 수 있음
     init {
-
     }
 
     //viewModel scope coroutine
@@ -38,4 +36,7 @@ class HomeViewModel: BaseViewModel() {
             emit(it)
         }
     }
+
+
+
 }

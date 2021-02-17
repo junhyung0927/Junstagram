@@ -10,4 +10,10 @@ class PhotoRepositoryImpl : PhotoRepository {
         return list
     }
 
+    override suspend fun getPagingData(page: Int): Pair<List<PhotoPagedList>, Int> {
+        val list = listOf(PhotoPagedList("title", R.drawable.sampleimage13, "bodyText"))
+
+        return if (page <= 30) Pair(list, page+1)
+        else Pair(listOf(), 0)
+    }
 }

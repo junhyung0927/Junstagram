@@ -5,4 +5,6 @@ import com.example.junstagram.model.PhotoPagedList
 
 interface PhotoRepository {
     suspend fun listData(): PhotoPagedList
+
+    suspend fun getPagingData(page: Int) : Pair<List<PhotoPagedList>, Int?>
 }
