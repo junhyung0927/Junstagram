@@ -26,19 +26,19 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(R.layout.home_fragment) {
         super.onViewCreated(view, savedInstanceState)
 
 
-        homeViewModel.photoPagedList.observe(viewLifecycleOwner, Observer {
-            binding.headText.text = it.title
-            binding.photoView.setImageResource(it.image)
-            binding.bodyText.text = it.bodyText
-        })
+//        homeViewModel.photoPagedList.observe(viewLifecycleOwner, Observer {
+//            binding.headText.text = it.title
+//            binding.photoView.setImageResource(it.image)
+//            binding.bodyText.text = it.bodyText
+//        })
 
-        homeViewModel.photoPagedList.value
-
-        homeViewModel.refreshFun()
-        //변화가 필요할 때
-        homeViewModel.testId.observe(viewLifecycleOwner, Observer {
-
-        })
+//        homeViewModel.photoPagedList.value
+//
+//        homeViewModel.refreshFun()
+//        //변화가 필요할 때
+//        homeViewModel.testId.observe(viewLifecycleOwner, Observer {
+//
+//        })
 
 
     }
