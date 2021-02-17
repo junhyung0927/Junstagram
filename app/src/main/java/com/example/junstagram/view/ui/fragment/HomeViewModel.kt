@@ -4,11 +4,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.cachedIn
+import androidx.paging.map
 import com.example.junstagram.model.PhotoPagedList
+import com.example.junstagram.repository.PhotoPagingSource
 import com.example.junstagram.repository.PhotoRepository
 import com.example.junstagram.repository.PhotoRepositoryImpl
 import com.example.junstagram.view.base.BaseViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 class HomeViewModel: BaseViewModel() {
@@ -37,6 +43,8 @@ class HomeViewModel: BaseViewModel() {
         }
     }
 
-
+    val photoList = Pager(PagingConfig(pageSize = 5)) { //config 설정
+        PhotoPagingSource(PhotoRepositoryImpl())
+    }.flow.cachedIn(viewModelScope)
 
 }
