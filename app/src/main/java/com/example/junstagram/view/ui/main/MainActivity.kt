@@ -25,6 +25,7 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
 
         binding.apply {
+
             viewPager.adapter = PagerAdapter(supportFragmentManager, lifecycle)
 
             viewPager.registerOnPageChangeCallback( object : ViewPager2.OnPageChangeCallback() {

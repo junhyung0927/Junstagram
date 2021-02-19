@@ -1,30 +1,21 @@
 package com.example.junstagram.view.ui.fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.activity.viewModels
-import androidx.fragment.app.FragmentActivity
-import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import com.example.junstagram.R
-import com.example.junstagram.databinding.ActivityMainBinding
-import com.example.junstagram.databinding.HomeFragmentBinding
-import com.example.junstagram.model.PhotoPagedList
-import com.example.junstagram.service.ApplicationGetContext
+import com.example.junstagram.databinding.RecyclerViewBinding
 import com.example.junstagram.view.base.BaseFragment
-import kotlinx.coroutines.job
+import com.example.junstagram.view.ui.adapter.PhotoPagingDataAdapter
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
-class HomeFragment : BaseFragment<HomeFragmentBinding>(R.layout.home_fragment) {
+class HomeFragment : BaseFragment<RecyclerViewBinding>(R.layout.recycler_view) {
     private val homeViewModel: HomeViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
 //        homeViewModel.photoPagedList.observe(viewLifecycleOwner, Observer {
 //            binding.headText.text = it.title
@@ -40,6 +31,16 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(R.layout.home_fragment) {
 //
 //        })
 
+        val adapter = PhotoPagingDataAdapter()
+        binding.apply {
+            binding.recyclerView.adapter = adapter
+
+            lifecycleScope.launch {
+                homeViewModel.photoList.collectLatest { pagingData ->
+                    adapter.submitData(pagingData)
+                }
+            }
+        }
 
     }
 }

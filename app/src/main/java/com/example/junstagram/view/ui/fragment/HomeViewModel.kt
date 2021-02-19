@@ -4,10 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.cachedIn
-import androidx.paging.map
+import androidx.paging.*
 import com.example.junstagram.model.PhotoPagedList
 import com.example.junstagram.repository.PhotoPagingSource
 import com.example.junstagram.repository.PhotoRepository
@@ -17,8 +14,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
-class HomeViewModel: BaseViewModel() {
-    private var photoRepository: PhotoRepository? = PhotoRepositoryImpl()
+class HomeViewModel : BaseViewModel() {
+    private var photoRepository: PhotoRepository = PhotoRepositoryImpl()
 
     //오로지 observing만 하도록 설정
     private val _testId = MutableLiveData<PhotoPagedList>()
@@ -44,7 +41,6 @@ class HomeViewModel: BaseViewModel() {
     }
 
     val photoList = Pager(PagingConfig(pageSize = 5)) { //config 설정
-        PhotoPagingSource(PhotoRepositoryImpl())
-    }.flow.cachedIn(viewModelScope)
-
+            PhotoPagingSource(photoRepository)
+        }.flow.cachedIn(viewModelScope)
 }
