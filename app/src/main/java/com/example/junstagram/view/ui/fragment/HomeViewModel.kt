@@ -27,7 +27,7 @@ class HomeViewModel : BaseViewModel() {
 
     //viewModel scope coroutine
     fun refreshFun() = viewModelScope.launch {
-        photoRepository?.listData()?.let {
+        photoRepository.listData().let {
             //데이터 값 변경
             _testId.value = it
         }
@@ -35,7 +35,7 @@ class HomeViewModel : BaseViewModel() {
 
     //앱이 시작할 떄 한번만 호출할 경우
     val photoPagedList = liveData<PhotoPagedList> {
-        photoRepository?.listData()?.let {
+        photoRepository.listData().let {
             emit(it)
         }
     }
