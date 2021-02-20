@@ -37,6 +37,7 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(R.layout.home_fragment) {
         binding.apply {
             val adapter = PhotoPagingDataAdapter()
             binding.recyclerView.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
+            binding.recyclerView.setHasFixedSize(true)
             binding.recyclerView.adapter = adapter
 
             lifecycleScope.launch {

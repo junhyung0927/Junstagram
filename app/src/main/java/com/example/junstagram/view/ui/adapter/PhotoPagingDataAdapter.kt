@@ -25,6 +25,7 @@ class PhotoPagingDataAdapter :
 
     override fun onBindViewHolder(holder: PhotoPagingViewHolder, position: Int) {
         val photodata = getItem(position)
+
         photodata?.let {
             holder.bind(it)
         }
