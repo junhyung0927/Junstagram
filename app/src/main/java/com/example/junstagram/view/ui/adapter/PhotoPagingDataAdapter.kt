@@ -4,14 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
-import com.example.junstagram.R
-import com.example.junstagram.databinding.HomeFragmentBinding
 import com.example.junstagram.databinding.ItemBinding
-import com.example.junstagram.model.PhotoPagedList
+import com.example.junstagram.model.PhotoInfo
 
 class PhotoPagingDataAdapter :
-    PagingDataAdapter<PhotoPagedList, PhotoPagingViewHolder>(diffUtil) {
+    PagingDataAdapter<PhotoInfo, PhotoPagingViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoPagingViewHolder {
         return PhotoPagingViewHolder(
@@ -36,18 +33,18 @@ class PhotoPagingDataAdapter :
     }
 
     companion object {
-        val diffUtil = object : DiffUtil.ItemCallback<PhotoPagedList>() {
+        val diffUtil = object : DiffUtil.ItemCallback<PhotoInfo>() {
 
             override fun areItemsTheSame(
-                oldItem: PhotoPagedList,
-                newItem: PhotoPagedList
+                oldItem: PhotoInfo,
+                newItem: PhotoInfo
             ): Boolean {
                 return oldItem == newItem
             }
 
             override fun areContentsTheSame(
-                oldItem: PhotoPagedList,
-                newItem: PhotoPagedList
+                oldItem: PhotoInfo,
+                newItem: PhotoInfo
             ): Boolean {
                 return oldItem.title == newItem.title
             }

@@ -1,26 +1,27 @@
 package com.example.junstagram.repository
 
 import com.example.junstagram.R
-import com.example.junstagram.model.PhotoPagedList
+import com.example.junstagram.model.PhotoInfo
 
 class PhotoRepositoryImpl : PhotoRepository {
 
-    override suspend fun listData(): PhotoPagedList {
-        val list = PhotoPagedList("title", R.drawable.sampleimage13, "bodyText")
+    override suspend fun listData(): PhotoInfo {
+        val list = PhotoInfo("title", R.drawable.sampleimage13, "bodyText")
         return list
     }
 
-    override suspend fun getPagingData(page: Int): Pair<List<PhotoPagedList>, Int?> {
+    override suspend fun getPagingData(page: Int): Pair<List<PhotoInfo>, Int?> {
         val list = listOf(
-            PhotoPagedList("title", R.drawable.sampleimage13, "bodyText"),
-            PhotoPagedList("title", R.drawable.sampleimage1, "bodyText"),
-            PhotoPagedList("title", R.drawable.sampleimage12, "bodyText"),
-            PhotoPagedList("title", R.drawable.sampleimage0, "bodyText"),
-            PhotoPagedList("title", R.drawable.sampleimage3, "bodyText"),
-            PhotoPagedList("title", R.drawable.sampleimage4, "bodyText"),
-            PhotoPagedList("title", R.drawable.sampleimage5, "bodyText"),
-            PhotoPagedList("title", R.drawable.sampleimage6, "bodyText"),
-            PhotoPagedList("title", R.drawable.sampleimage7, "bodyText"),
+            PhotoInfo("title", R.drawable.sampleimage13, "bodyText"),
+            PhotoInfo("title", R.drawable.sampleimage1, "bodyText"),
+            PhotoInfo("title", R.drawable.sampleimage12, "bodyText"),
+            PhotoInfo("title", R.drawable.sampleimage0, "bodyText"),
+            PhotoInfo("title", R.drawable.sampleimage3, "bodyText"),
+            PhotoInfo("title", R.drawable.sampleimage4, "bodyText"),
+            PhotoInfo("title", R.drawable.sampleimage5, "bodyText"),
+            PhotoInfo("title", R.drawable.sampleimage6, "bodyText"),
+            PhotoInfo("title", R.drawable.sampleimage7, "bodyText"),
+            PhotoInfo("title", R.drawable.sampleimage8, "bodyText"),
 
         )
 

@@ -2,14 +2,14 @@ package com.example.junstagram.repository
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.junstagram.model.PhotoPagedList
+import com.example.junstagram.model.PhotoInfo
 import java.lang.Exception
 
 class PhotoPagingSource(
     private val repository: PhotoRepository = PhotoRepositoryImpl()
-) : PagingSource<Int, PhotoPagedList>(){
+) : PagingSource<Int, PhotoInfo>(){
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, PhotoPagedList> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, PhotoInfo> {
         return try {
             //페이지 키 식별값
             val nextPage = params.key ?: 1
@@ -25,7 +25,7 @@ class PhotoPagingSource(
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int, PhotoPagedList>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, PhotoInfo>): Int? {
         TODO("Not yet implemented")
     }
 
