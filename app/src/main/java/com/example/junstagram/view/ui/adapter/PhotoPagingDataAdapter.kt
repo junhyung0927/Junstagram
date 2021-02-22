@@ -21,20 +21,13 @@ class PhotoPagingDataAdapter :
     }
 
     override fun onBindViewHolder(holder: PhotoPagingViewHolder, position: Int) {
-        val photodata = getItem(position)
-
-        photodata?.let {
+        getItem(position)?.let {
             holder.bind(it)
         }
     }
 
-    override fun getItemCount(): Int {
-        return super.getItemCount()
-    }
-
     companion object {
         val diffUtil = object : DiffUtil.ItemCallback<PhotoInfo>() {
-
             override fun areItemsTheSame(
                 oldItem: PhotoInfo,
                 newItem: PhotoInfo

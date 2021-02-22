@@ -13,10 +13,11 @@ class PhotoPagingSource(
         return try {
             //페이지 키 식별값
             val nextPage = params.key ?: 1
-            val response = repository.getPagingData(nextPage)
+            val response = repository.getPhotoInfoList(nextPage)
 
             LoadResult.Page(
                 data = response.first,
+                //prevKey ...
                 prevKey = null,
                 nextKey = response.second
             )
@@ -28,6 +29,4 @@ class PhotoPagingSource(
     override fun getRefreshKey(state: PagingState<Int, PhotoInfo>): Int? {
         TODO("Not yet implemented")
     }
-
-
 }
