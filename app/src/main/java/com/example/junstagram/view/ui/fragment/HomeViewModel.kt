@@ -13,7 +13,7 @@ import com.example.junstagram.view.base.BaseViewModel
 import kotlinx.coroutines.launch
 
 class HomeViewModel(private val photoRepository: PhotoRepository = PhotoRepositoryImpl()) : BaseViewModel() {
-    val photoList = Pager(PagingConfig(pageSize = 1)) { //config 설정
+    val photoList = Pager(PagingConfig(pageSize = 5)) { //config 설정
             PhotoPagingSource(photoRepository)
         }.flow.cachedIn(viewModelScope)
 }

@@ -13,7 +13,5 @@ class PhotoPagingViewHolder(val binding: ItemBinding) : RecyclerView.ViewHolder(
 
         binding.headText.text = item.title
         binding.bodyText.text = item.bodyText
-//        binding.photoView.setImageResource(item.image)
-
     }
 }
