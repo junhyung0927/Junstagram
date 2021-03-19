@@ -3,8 +3,8 @@
 
     <data>
         <variable
-            name="buttonEvent"
-            type="com.example.junstagram.view.ui.fragment.HomeViewModel" />
+            name="photofocus"
+            type="com.example.junstagram.view.ui.adapter.PhotoPagingViewHolder" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="@color/white"
-            android:onClick="@{() -> buttonEvent.onPhotoFocusListener()}"
+            android:onClick="@{() -> photofocus.onPhotoFocusListener()}"
             android:scaleType="centerInside"
             app:layout_constraintBottom_toTopOf="@id/bodyText"
             app:layout_constraintEnd_toEndOf="parent"

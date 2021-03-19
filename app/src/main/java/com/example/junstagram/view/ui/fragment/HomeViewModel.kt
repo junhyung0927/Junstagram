@@ -18,11 +18,11 @@ class HomeViewModel(private val photoRepository: PhotoRepository = PhotoReposito
             PhotoPagingSource(photoRepository)
         }.flow.cachedIn(viewModelScope)
 
-    private val _callEvent = MutableLiveData<Event<Boolean>>()
-    val callEvent: LiveData<Event<Boolean>>
-        get() = _callEvent
-
-    fun onPhotoFocusListener() {
-        _callEvent.value = Event(true)
-    }
+//    private val _callEvent = MutableLiveData<Event<Boolean>>()
+//    val callEvent: LiveData<Event<Boolean>>
+//        get() = _callEvent
+//    fun onPhotoFocusListener() {
+//        println("test")
+//        _callEvent.value = Event(true)
+//    }
 }
