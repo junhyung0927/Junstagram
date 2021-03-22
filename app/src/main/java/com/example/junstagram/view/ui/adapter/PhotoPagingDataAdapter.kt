@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import com.example.junstagram.databinding.ItemBinding
 import com.example.junstagram.model.PhotoInfo
 
-class PhotoPagingDataAdapter :
+class PhotoPagingDataAdapter(val listener : PhotoFocusListener?) :
     PagingDataAdapter<PhotoInfo, PhotoPagingViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoPagingViewHolder {
@@ -23,6 +23,10 @@ class PhotoPagingDataAdapter :
     override fun onBindViewHolder(holder: PhotoPagingViewHolder, position: Int) {
         getItem(position)?.let {
             holder.bind(it)
+
+            holder.binding.photofocus?.onPhotoFocusListener() {
+                listener?.onPhotoFocus(it)
+            }
         }
     }
 

@@ -22,7 +22,6 @@ class HomeViewModel(private val photoRepository: PhotoRepository = PhotoReposito
 //    val callEvent: LiveData<Event<Boolean>>
 //        get() = _callEvent
 //    fun onPhotoFocusListener() {
-//        println("test")
 //        _callEvent.value = Event(true)
 //    }
 }

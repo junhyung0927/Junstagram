@@ -11,6 +11,8 @@ import com.example.junstagram.R
 import com.example.junstagram.databinding.HomeFragmentBinding
 import com.example.junstagram.util.EventObserver
 import com.example.junstagram.view.base.BaseFragment
+import com.example.junstagram.view.ui.adapter.CustomDialog
+import com.example.junstagram.view.ui.adapter.PhotoFocusListener
 import com.example.junstagram.view.ui.adapter.PhotoPagingDataAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -23,12 +25,17 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(R.layout.home_fragment) {
 
         binding.lifecycleOwner = this
         binding.apply {
-            val photoPagingDataAdapter = PhotoPagingDataAdapter()
+            val photoPagingDataAdapter = PhotoPagingDataAdapter(listener = null)
 
             recyclerView.apply {
                 layoutManager = LinearLayoutManager(requireContext())
                 setHasFixedSize(true)
-                adapter = photoPagingDataAdapter
+                adapter = PhotoPagingDataAdapter(object : PhotoFocusListener {
+                    override fun onPhotoFocus(callback: CustomDialog) {
+                        callback.showsDialog
+                    }
+                })
+
             }
 
             lifecycleScope.launch {

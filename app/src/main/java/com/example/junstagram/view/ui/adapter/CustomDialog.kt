@@ -10,24 +10,12 @@ import com.example.junstagram.R
 import com.github.chrisbanes.photoview.PhotoView
 import java.lang.IllegalStateException
 
-class CustomDialog(v: View): DialogFragment() {
-    private val v = v
-    private var dialog: AlertDialog? = null
-
+class CustomDialog: DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             val builder = AlertDialog.Builder(it)
             builder.setMessage("test")
             builder.create()
         } ?: throw IllegalStateException("Error")
-
-//        val mainDialog: AlertDialog.Builder = AlertDialog.Builder(
-//            requireContext(), android.R.style.Theme_DeviceDefault_Dialog_NoActionBar_MinWidth)
-//        mainDialog.setView(v)
-//
-//        v
-//        dialog = mainDialog.create()
     }
-
-
 }
