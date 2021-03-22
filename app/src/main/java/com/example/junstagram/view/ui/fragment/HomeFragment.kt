@@ -35,7 +35,6 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(R.layout.home_fragment) {
                         callback.showsDialog
                     }
                 })
-
             }
 
             lifecycleScope.launch {
