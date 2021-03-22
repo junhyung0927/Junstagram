@@ -27,7 +27,7 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(R.layout.home_fragment) {
         binding.apply {
             val photoPagingDataAdapter = PhotoPagingDataAdapter(listener = null)
 
-            recyclerView.apply {
+            recyclerViewHomeFragment.apply {
                 layoutManager = LinearLayoutManager(requireContext())
                 setHasFixedSize(true)
                 adapter = PhotoPagingDataAdapter(object : PhotoFocusListener {

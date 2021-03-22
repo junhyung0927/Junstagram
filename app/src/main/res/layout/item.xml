@@ -14,7 +14,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/headText"
+            android:id="@+id/item_headText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -23,27 +23,27 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.github.chrisbanes.photoview.PhotoView
-            android:id="@+id/photo_view"
+            android:id="@+id/item_photo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="@color/white"
             android:onClick="@{() -> photofocus.onPhotoFocusListener()}"
             android:scaleType="centerInside"
-            app:layout_constraintBottom_toTopOf="@id/bodyText"
+            app:layout_constraintBottom_toTopOf="@id/item_bodyText"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/headText"
-            app:layout_constraintTop_toBottomOf="@id/headText" />
+            app:layout_constraintStart_toStartOf="@id/item_headText"
+            app:layout_constraintTop_toBottomOf="@id/item_headText" />
 
         <TextView
-            android:id="@+id/bodyText"
+            android:id="@+id/item_bodyText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@id/photo_view"
-            app:layout_constraintTop_toBottomOf="@id/photo_view" />
+            app:layout_constraintStart_toStartOf="@id/item_photo"
+            app:layout_constraintTop_toBottomOf="@id/item_photo" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

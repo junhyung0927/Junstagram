@@ -1,6 +1,7 @@
 package com.example.junstagram.view.ui.main
 
 import android.os.Bundle
+import androidx.databinding.DataBindingUtil
 import androidx.viewpager2.widget.ViewPager2
 import com.example.junstagram.R
 import com.example.junstagram.view.base.BaseActivity
@@ -9,17 +10,16 @@ import com.example.junstagram.view.ui.adapter.PagerAdapter
 
 class MainActivity : BaseActivity() {
     private val binding by binding<ActivityMainBinding>(R.layout.activity_main)
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding.apply {
-            viewPager.adapter = PagerAdapter(this@MainActivity)
+            mainViewpager2.adapter = PagerAdapter(this@MainActivity)
 
-            viewPager.registerOnPageChangeCallback( object : ViewPager2.OnPageChangeCallback() {
+            mainViewpager2.registerOnPageChangeCallback( object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
-                    binding.bottomAppBar.selectedItemId = when (position) {
+                    binding.mainBottomAppbar.selectedItemId = when (position) {
                         0 -> R.id.page_1
                         1 -> R.id.page_2
                         2 -> R.id.page_3
@@ -30,8 +30,8 @@ class MainActivity : BaseActivity() {
                 }
             })
 
-            bottomAppBar.setOnNavigationItemSelectedListener { item ->
-                binding.viewPager.currentItem =
+            mainBottomAppbar.setOnNavigationItemSelectedListener { item ->
+                binding.mainViewpager2.currentItem =
                     when (item.itemId) {
                         R.id.page_1 -> 0
                         R.id.page_2 -> 1

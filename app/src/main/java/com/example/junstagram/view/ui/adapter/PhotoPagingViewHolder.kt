@@ -18,9 +18,9 @@ class PhotoPagingViewHolder(val binding: ItemBinding) :
     fun bind(item: PhotoInfo) {
         Glide.with(binding.root)
             .load(item.image)
-            .into(binding.photoView)
-        binding.headText.text = item.title
-        binding.bodyText.text = item.bodyText
+            .into(binding.itemPhoto)
+        binding.itemHeadText.text = item.title
+        binding.itemBodyText.text = item.bodyText
     }
 
     fun onPhotoFocusListener(customDialog: (CustomDialog) -> Unit){
