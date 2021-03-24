@@ -4,11 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.junstagram.databinding.ItemBinding
 import com.example.junstagram.model.PhotoInfo
+import com.example.junstagram.view.ui.fragment.HomeViewModel
 
-class PhotoPagingDataAdapter(val listener : PhotoFocusListener?) :
-    PagingDataAdapter<PhotoInfo, PhotoPagingViewHolder>(diffUtil) {
+class PhotoPagingDataAdapter(val homeViewModel: HomeViewModel) :
+    PagingDataAdapter<PhotoInfo, PhotoPagingDataAdapter.PhotoPagingViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoPagingViewHolder {
         return PhotoPagingViewHolder(
@@ -23,10 +26,22 @@ class PhotoPagingDataAdapter(val listener : PhotoFocusListener?) :
     override fun onBindViewHolder(holder: PhotoPagingViewHolder, position: Int) {
         getItem(position)?.let {
             holder.bind(it)
+        }
+    }
 
-            holder.binding.photofocus?.onPhotoFocusListener() {
-                listener?.onPhotoFocus(it)
+    inner class PhotoPagingViewHolder(val binding: ItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        init {
+            binding.itemPhoto.setOnClickListener {
+                getItem(bindingAdapterPosition)?.let {
+                    homeViewModel.callOnPhotoFocusEvent(it.image)
+                }
             }
+        }
+
+        fun bind(item: PhotoInfo) {
+            binding.item = item
+            binding.executePendingBindings()
         }
     }
 

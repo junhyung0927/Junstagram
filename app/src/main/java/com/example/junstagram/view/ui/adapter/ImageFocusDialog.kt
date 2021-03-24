@@ -10,9 +10,22 @@ import com.example.junstagram.R
 import com.github.chrisbanes.photoview.PhotoView
 import java.lang.IllegalStateException
 
-class CustomDialog: DialogFragment() {
+class ImageFocusDialog: DialogFragment() {
+    companion object {
+        fun newInstance(photoId: Int): ImageFocusDialog {
+            val args = Bundle()
+            args.putInt("photoId", photoId)
+            return ImageFocusDialog()
+        }
+    }
+
+    private val photoId by lazy {
+        requireArguments().getInt("photoId")
+    }
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
+            photoId
             val builder = AlertDialog.Builder(it)
             builder.setMessage("test")
             builder.create()
