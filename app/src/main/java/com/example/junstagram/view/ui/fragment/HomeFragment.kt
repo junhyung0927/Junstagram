@@ -11,8 +11,7 @@ import com.example.junstagram.databinding.FragmentHomeBinding
 import com.example.junstagram.util.EventObserver
 import com.example.junstagram.view.base.BaseFragment
 import com.example.junstagram.view.ui.activity.FullImageActivity
-import com.example.junstagram.view.ui.adapter.ImageFocusDialog
-import com.example.junstagram.view.ui.adapter.PhotoFocusListener
+import com.example.junstagram.view.ui.activity.FullImageActivity.Companion.KEY_PHOTO_ID_FULL_IMAGE
 import com.example.junstagram.view.ui.adapter.PhotoPagingDataAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -48,7 +47,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
         homeViewModel.onPhotoFocusEvent.observe(viewLifecycleOwner, EventObserver {
             val intent = Intent(activity, FullImageActivity::class.java)
-            intent.putExtra("photoId", FullImageActivity.KEY_PHOTO_ID_FULL_IMAGE)
+            intent.putExtra(KEY_PHOTO_ID_FULL_IMAGE, it)
             startActivity(intent)
         })
     }

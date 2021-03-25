@@ -13,7 +13,7 @@ class FullImageActivity : BaseActivity() {
     private val binding by binding<ActivityFullImageBinding>(R.layout.activity_full_image)
 
     companion object {
-        var KEY_PHOTO_ID_FULL_IMAGE: Int = 0
+        const val KEY_PHOTO_ID_FULL_IMAGE: String = "photoId"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,8 +23,8 @@ class FullImageActivity : BaseActivity() {
             lifecycleOwner = this@FullImageActivity
 
             val intent = getIntent()
-            KEY_PHOTO_ID_FULL_IMAGE = intent.getIntExtra("photoId", 0)
-            imageId = KEY_PHOTO_ID_FULL_IMAGE
+            val photoId = intent.getIntExtra(KEY_PHOTO_ID_FULL_IMAGE, 0)
+            imageId = photoId
         }
     }
 }

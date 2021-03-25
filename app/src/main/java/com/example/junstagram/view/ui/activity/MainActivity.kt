@@ -13,13 +13,13 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
 
         binding.apply {
-            mainViewpager2.adapter = PagerAdapter(this@MainActivity)
+            viewPager2Main.adapter = PagerAdapter(this@MainActivity)
 
-            mainViewpager2.registerOnPageChangeCallback( object : ViewPager2.OnPageChangeCallback() {
+            viewPager2Main.registerOnPageChangeCallback( object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
-                    binding.mainBottomAppbar.menu.getItem(position).isChecked = true
-                    binding.mainBottomAppbar.selectedItemId = when (position) {
+                    binding.bottomNavigationViewMain.menu.getItem(position).isChecked = true
+                    binding.bottomNavigationViewMain.selectedItemId = when (position) {
                         0 -> R.id.page_1
                         1 -> R.id.page_2
                         2 -> R.id.page_3
@@ -30,8 +30,8 @@ class MainActivity : BaseActivity() {
                 }
             })
 
-            mainBottomAppbar.setOnNavigationItemSelectedListener { item ->
-                binding.mainViewpager2.currentItem =
+            bottomNavigationViewMain.setOnNavigationItemSelectedListener { item ->
+                binding.viewPager2Main.currentItem =
                     when (item.itemId) {
                         R.id.page_1 -> 0
                         R.id.page_2 -> 1
