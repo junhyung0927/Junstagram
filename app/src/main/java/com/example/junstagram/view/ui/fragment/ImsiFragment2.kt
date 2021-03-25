@@ -13,6 +13,6 @@ class ImsiFragment2 : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.insert_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_insert, container, false)
     }
 }

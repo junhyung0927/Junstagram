@@ -6,7 +6,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.junstagram.R
-import com.example.junstagram.databinding.HomeFragmentBinding
+import com.example.junstagram.databinding.FragmentHomeBinding
 import com.example.junstagram.util.EventObserver
 import com.example.junstagram.view.base.BaseFragment
 import com.example.junstagram.view.ui.adapter.ImageFocusDialog
@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.util.*
 
-class HomeFragment : BaseFragment<HomeFragmentBinding>(R.layout.home_fragment) {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private val homeViewModel: HomeViewModel by viewModels()
 
     companion object {
@@ -46,7 +46,6 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(R.layout.home_fragment) {
 
         homeViewModel.onPhotoFocusEvent.observe(viewLifecycleOwner, EventObserver {
             println("포토 아이디 $it")
-
         })
     }
 }

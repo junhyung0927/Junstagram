@@ -6,7 +6,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.junstagram.databinding.ItemBinding
+import com.example.junstagram.databinding.UserItemBinding
 import com.example.junstagram.model.PhotoInfo
 import com.example.junstagram.view.ui.fragment.HomeViewModel
 
@@ -15,7 +15,7 @@ class PhotoPagingDataAdapter(val homeViewModel: HomeViewModel) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoPagingViewHolder {
         return PhotoPagingViewHolder(
-            ItemBinding.inflate(
+            UserItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 null,
                 false
@@ -29,7 +29,7 @@ class PhotoPagingDataAdapter(val homeViewModel: HomeViewModel) :
         }
     }
 
-    inner class PhotoPagingViewHolder(val binding: ItemBinding) :
+    inner class PhotoPagingViewHolder(val binding: UserItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         init {
             binding.itemPhoto.setOnClickListener {
