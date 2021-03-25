@@ -7,7 +7,7 @@ import java.lang.Exception
 
 class PhotoPagingSource(
     private val repository: PhotoRepository = PhotoRepositoryImpl()
-) : PagingSource<Int, PhotoInfo>(){
+) : PagingSource<Int, PhotoInfo>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, PhotoInfo> {
         return try {
@@ -17,9 +17,8 @@ class PhotoPagingSource(
 
             LoadResult.Page(
                 data = response.first,
-                //prevKey ...
                 prevKey = null,
-                nextKey = response.second
+                nextKey = null
             )
         } catch (e: Exception) {
             LoadResult.Error(Throwable("Error"))

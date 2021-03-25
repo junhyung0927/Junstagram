@@ -12,4 +12,9 @@
     <style name="FullScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowFullscreen">true</item>
     </style>
+
+    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/sdsamliphopangche_ttf_outline</item>
+    </style>
 </resources>
