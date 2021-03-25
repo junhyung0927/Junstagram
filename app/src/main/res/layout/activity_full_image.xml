@@ -16,12 +16,11 @@
         android:layout_height="match_parent">
 
         <com.github.chrisbanes.photoview.PhotoView
-            android:id ="@+id/full_photo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id ="@+id/photoView_activity_full_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             bind:photoId="@{imageId}"
-
-            android:scaleType="centerInside"
+            
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

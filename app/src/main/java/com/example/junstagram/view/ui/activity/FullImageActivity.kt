@@ -12,6 +12,10 @@ import java.lang.IllegalStateException
 class FullImageActivity : BaseActivity() {
     private val binding by binding<ActivityFullImageBinding>(R.layout.activity_full_image)
 
+    companion object {
+        var KEY_PHOTO_ID_FULL_IMAGE: Int = 0
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -19,9 +23,8 @@ class FullImageActivity : BaseActivity() {
             lifecycleOwner = this@FullImageActivity
 
             val intent = getIntent()
-            val photoId = intent.getIntExtra("photoId", 0)
-            println("photoId $photoId")
-            imageId = photoId
+            KEY_PHOTO_ID_FULL_IMAGE = intent.getIntExtra("photoId", 0)
+            imageId = KEY_PHOTO_ID_FULL_IMAGE
         }
     }
 }
