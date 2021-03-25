@@ -19,6 +19,7 @@ class MainActivity : BaseActivity() {
             mainViewpager2.registerOnPageChangeCallback( object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
+                    binding.mainBottomAppbar.menu.getItem(position).isChecked = true
                     binding.mainBottomAppbar.selectedItemId = when (position) {
                         0 -> R.id.page_1
                         1 -> R.id.page_2
