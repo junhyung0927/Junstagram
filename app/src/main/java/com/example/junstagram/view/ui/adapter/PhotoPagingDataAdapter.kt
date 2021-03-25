@@ -32,7 +32,7 @@ class PhotoPagingDataAdapter(val homeViewModel: HomeViewModel) :
     inner class PhotoPagingViewHolder(val binding: UserItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         init {
-            binding.itemPhoto.setOnClickListener {
+            binding.photoViewItemImage.setOnClickListener {
                 getItem(bindingAdapterPosition)?.let {
                     homeViewModel.callOnPhotoFocusEvent(it.image)
                 }
