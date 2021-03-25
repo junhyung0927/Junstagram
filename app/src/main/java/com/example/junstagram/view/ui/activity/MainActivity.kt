@@ -1,7 +1,6 @@
-package com.example.junstagram.view.ui.main
+package com.example.junstagram.view.ui.activity
 
 import android.os.Bundle
-import androidx.databinding.DataBindingUtil
 import androidx.viewpager2.widget.ViewPager2
 import com.example.junstagram.R
 import com.example.junstagram.view.base.BaseActivity

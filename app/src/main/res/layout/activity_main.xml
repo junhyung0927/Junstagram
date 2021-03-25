@@ -11,7 +11,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".view.ui.main.MainActivity">
+            tools:context=".view.ui.activity.MainActivity">
 
             <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/main_top_appbar"

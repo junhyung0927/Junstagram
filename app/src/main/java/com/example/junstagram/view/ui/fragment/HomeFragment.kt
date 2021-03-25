@@ -1,5 +1,6 @@
 package com.example.junstagram.view.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -9,6 +10,7 @@ import com.example.junstagram.R
 import com.example.junstagram.databinding.FragmentHomeBinding
 import com.example.junstagram.util.EventObserver
 import com.example.junstagram.view.base.BaseFragment
+import com.example.junstagram.view.ui.activity.FullImageActivity
 import com.example.junstagram.view.ui.adapter.ImageFocusDialog
 import com.example.junstagram.view.ui.adapter.PhotoFocusListener
 import com.example.junstagram.view.ui.adapter.PhotoPagingDataAdapter
@@ -45,7 +47,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         }
 
         homeViewModel.onPhotoFocusEvent.observe(viewLifecycleOwner, EventObserver {
-            println("포토 아이디 $it")
+            val intent = Intent(activity, FullImageActivity::class.java)
+            intent.putExtra("photoId", it)
+            startActivity(intent)
         })
     }
 }

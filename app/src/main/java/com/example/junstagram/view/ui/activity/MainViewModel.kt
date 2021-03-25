@@ -1,4 +1,4 @@
-package com.example.junstagram.view.ui.main
+package com.example.junstagram.view.ui.activity
 
 import com.example.junstagram.view.base.BaseViewModel
 
