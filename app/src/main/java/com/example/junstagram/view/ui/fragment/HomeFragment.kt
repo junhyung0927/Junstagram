@@ -44,6 +44,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
                 }
             }
         }
+        
 
         homeViewModel.onPhotoFocusEvent.observe(viewLifecycleOwner, EventObserver {
             val intent = Intent(activity, FullImageActivity::class.java)
