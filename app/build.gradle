@@ -36,9 +36,6 @@ android {
     dataBinding {
         enabled = true
     }
-    buildscript {
-        ext.kotlin_version = '1.4.0'
-    }
 }
 
 dependencies {
@@ -96,6 +93,23 @@ dependencies {
 
     //TedPermission
     implementation 'gun0912.ted:tedpermission:2.2.3'
+
+    // Koin for Kotlin (핵심 옵션)
+    implementation "org.koin:koin-core:$koin_version"
+    // Koin extended & experimental features (핵심 옵션)
+    implementation "org.koin:koin-core-ext:$koin_version"
+
+    // Koin for Unit tests
+    testImplementation "org.koin:koin-test:$koin_version"
+
+    // Koin for Android
+    implementation "org.koin:koin-android:$koin_version"
+    // Koin Android Scope features
+    implementation "org.koin:koin-android-scope:$koin_version"
+    // Koin Android ViewModel features
+    implementation "org.koin:koin-android-viewmodel:$koin_version"
+    // Koin Android Experimental features
+    implementation "org.koin:koin-android-ext:$koin_version"
 
     // Koin AndroidX Scope features
     implementation "org.koin:koin-androidx-scope:2.2.2"
