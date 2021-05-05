@@ -6,6 +6,9 @@ import com.example.junstagram.R
 import com.example.junstagram.view.base.BaseActivity
 import com.example.junstagram.databinding.ActivityMainBinding
 import com.example.junstagram.view.ui.adapter.PagerAdapter
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
+import org.koin.core.context.startKoin
 
 class MainActivity : BaseActivity() {
     private val binding by binding<ActivityMainBinding>(R.layout.activity_main)

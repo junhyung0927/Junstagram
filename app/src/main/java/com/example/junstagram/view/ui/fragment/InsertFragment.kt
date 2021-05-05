@@ -11,6 +11,7 @@ import com.example.junstagram.view.base.BaseFragment
 import com.gun0912.tedpermission.TedPermission
 import com.gun0912.tedpermission.PermissionListener
 import android.Manifest
+import org.koin.android.ext.android.bind
 
 class InsertFragment : BaseFragment<FragmentInsertBinding>(R.layout.fragment_insert) {
     companion object {
@@ -20,6 +21,16 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(R.layout.fragment_ins
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        galleryPermission()
+
+        binding.lifecycleOwner = this
+
+        binding.apply {
+
+        }
+    }
+
+    private fun galleryPermission() {
         TedPermission.with(context)
             .setPermissionListener(object : PermissionListener {
                 override fun onPermissionGranted() {

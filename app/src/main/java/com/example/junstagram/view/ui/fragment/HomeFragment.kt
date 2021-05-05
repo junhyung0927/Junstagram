@@ -8,6 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.junstagram.R
 import com.example.junstagram.databinding.FragmentHomeBinding
+import com.example.junstagram.di.viewModelModule
 import com.example.junstagram.util.EventObserver
 import com.example.junstagram.view.base.BaseFragment
 import com.example.junstagram.view.ui.activity.FullImageActivity
@@ -28,6 +29,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.lifecycleOwner = this
+
         binding.apply {
             val photoPagingDataAdapter = PhotoPagingDataAdapter(homeViewModel)
 
