@@ -5,5 +5,5 @@ import com.example.junstagram.repository.PhotoRepositoryImpl
 import org.koin.dsl.module
 
 val repositoryModule = module {
-    single<PhotoRepository> { PhotoRepositoryImpl(photoRemoteDataSource = get()) }
+    single<PhotoRepository> { PhotoRepositoryImpl(photoPagingSource = get()) }
 }
