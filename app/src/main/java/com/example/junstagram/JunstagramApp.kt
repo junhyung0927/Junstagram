@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.compose.runtime.frames.modelListOf
 import com.example.junstagram.di.dataSourceModule
 import com.example.junstagram.di.repositoryModule
+import com.example.junstagram.di.serviceModule
 import com.example.junstagram.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -17,6 +18,7 @@ class JunstagramApp : Application() {
             modules(dataSourceModule)
             modules(repositoryModule)
             modules(viewModelModule)
+            modules(serviceModule)
         }
     }
 }
