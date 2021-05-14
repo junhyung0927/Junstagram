@@ -1,11 +1,11 @@
 package com.example.junstagram.data
 
 import com.example.junstagram.model.PhotoInfo
-import com.example.junstagram.service.MockPhotoDataService
+import com.example.junstagram.service.PhotoDataService
 
 
-class PhotoRemoteDataSource(val mockData: MockPhotoDataService = MockPhotoDataService()) : PhotoDataSource {
+class PhotoRemoteDataSource(val photoDataService: PhotoDataService) : PhotoDataSource {
     override suspend fun getPhotoInfoList(page: Int): List<PhotoInfo> {
-        return mockData.getPhotoInfoList(page)
+        return photoDataService.getPhotoInfoList(page)
     }
 }

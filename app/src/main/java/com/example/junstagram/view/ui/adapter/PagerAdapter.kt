@@ -12,7 +12,7 @@ class PagerAdapter(fragmentActivity: FragmentActivity): FragmentStateAdapter(fra
         return when (position) {
             0 -> HomeFragment()
             1 -> ImsiFragment1()
-            2 -> ImsiFragment2()
+            2 -> InsertFragment()
             3 -> ImsiFragment3()
             4 -> ImsiFragment4()
             else -> error(" 존재하지 않는 프래그먼트 ")
