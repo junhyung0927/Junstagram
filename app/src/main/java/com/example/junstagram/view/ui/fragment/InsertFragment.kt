@@ -1,21 +1,17 @@
 package com.example.junstagram.view.ui.fragment
 
-import android.app.Activity
 import android.os.Bundle
 import android.view.View
 import com.example.junstagram.R
 import com.example.junstagram.databinding.FragmentInsertBinding
 import com.example.junstagram.view.base.BaseFragment
 import android.content.Intent
-import android.net.Uri
-import android.graphics.Bitmap
-import android.widget.ImageView
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import com.example.junstagram.room.AppDatabase
+import com.example.junstagram.room.GallerySelectData
 import com.example.junstagram.util.GalleryPermission
-import gun0912.tedimagepicker.builder.TedImagePicker
 import org.koin.android.viewmodel.ext.android.viewModel
-import java.net.URI
 
 
 class InsertFragment : BaseFragment<FragmentInsertBinding>(R.layout.fragment_insert) {
@@ -35,6 +31,7 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(R.layout.fragment_ins
             GalleryPermission().galleryPermission(context)
             pickFromGallery()
         }
+
     }
 
     private fun pickFromGallery() {
@@ -50,5 +47,10 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(R.layout.fragment_ins
     val startForResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             binding.photoViewInsertImage.setImageURI(result.data?.data)
+
+            val testData = GallerySelectData(1, "test1", result.data?.data.toString())
+            AppDatabase.getInstance(requireContext()).GalleryDao().insertGalleryImage(testData)
+            binding.textViewSelectText.text = AppDatabase.getInstance(requireContext()).GalleryDao().getAllGalleryData().toString()
+
         }
 }
