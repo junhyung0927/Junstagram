@@ -1,49 +1,54 @@
 package com.example.junstagram.view.ui.fragment
 
+import android.app.Activity
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.example.junstagram.R
 import com.example.junstagram.databinding.FragmentInsertBinding
 import com.example.junstagram.view.base.BaseFragment
-import com.gun0912.tedpermission.TedPermission
-import com.gun0912.tedpermission.PermissionListener
-import android.Manifest
-import org.koin.android.ext.android.bind
+import android.content.Intent
+import android.net.Uri
+import android.graphics.Bitmap
+import android.widget.ImageView
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import com.example.junstagram.util.GalleryPermission
+import gun0912.tedimagepicker.builder.TedImagePicker
+import org.koin.android.viewmodel.ext.android.viewModel
+import java.net.URI
+
 
 class InsertFragment : BaseFragment<FragmentInsertBinding>(R.layout.fragment_insert) {
+    private val insertViewModel: InsertViewModel by viewModel()
+
     companion object {
         fun newInstance() = InsertFragment()
+        const val KEY_GALLERY_ID_SELECT_IMAGE: String = Intent.EXTRA_MIME_TYPES
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        galleryPermission()
-
         binding.lifecycleOwner = this
 
         binding.apply {
-
+            GalleryPermission().galleryPermission(context)
+            pickFromGallery()
         }
     }
 
-    private fun galleryPermission() {
-        TedPermission.with(context)
-            .setPermissionListener(object : PermissionListener {
-                override fun onPermissionGranted() {
-                    println("권한 허용 가능")
-                }
-
-                override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
-                    for (i in deniedPermissions!!)
-                        println("권한 허용 불가능")
-                }
-            })
-            .setDeniedMessage("앱을 실행하려면 권한을 허용해야 합니다.")
-            .setPermissions(Manifest.permission.CAMERA)
-            .check()
+    private fun pickFromGallery() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.setType("image/*")
+        val mimTypes = arrayOf(
+            "image/jpeg", "image/png"
+        )
+        intent.putExtra(KEY_GALLERY_ID_SELECT_IMAGE, mimTypes)
+        startForResult.launch(intent)
     }
+
+    val startForResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            binding.photoViewInsertImage.setImageURI(result.data?.data)
+        }
 }

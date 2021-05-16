@@ -7,20 +7,12 @@
     <data>
         <variable
             name="imageId"
-            type="int" />
+            type="android.net.Uri" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
 
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-<!--        <TextView-->
-<!--            android:id="@+id/textView_insert_title"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-
-<!--            />-->
 
         <ImageButton
             android:layout_width="50dp"
@@ -35,7 +27,8 @@
             android:id="@+id/photoView_insert_image"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            bind:photoId="@{imageId}"
+            android:src="@{imageId}"
+            android:scaleType="centerInside"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

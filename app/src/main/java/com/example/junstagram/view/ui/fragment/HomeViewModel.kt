@@ -11,7 +11,6 @@ class HomeViewModel(private val photoRepository: PhotoRepository) : BaseViewMode
     val photoList = liveData<PagingData<PhotoInfo>> {
         //liveData
         emitSource(photoRepository.getPhotoInfoList().liveData)
-
     }
 
     private val _onPhotoFocusEvent = MutableLiveData<Event<Int>>()
