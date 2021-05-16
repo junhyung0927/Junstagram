@@ -48,9 +48,9 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(R.layout.fragment_ins
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             binding.photoViewInsertImage.setImageURI(result.data?.data)
 
-            val testData = GallerySelectData(1, "test1", result.data?.data.toString())
-            AppDatabase.getInstance(requireContext()).GalleryDao().insertGalleryImage(testData)
+            val gallerySelectData = GallerySelectData(1, "select1", result.data?.data.toString())
+            AppDatabase.getInstance(requireContext()).GalleryDao().insertGalleryImage(gallerySelectData)
             binding.textViewSelectText.text = AppDatabase.getInstance(requireContext()).GalleryDao().getAllGalleryData().toString()
-
         }
 }
+
