@@ -1,4 +1,4 @@
-package com.example.junstagram.room
+package com.example.junstagram.model
 
 import android.net.Uri
 import android.provider.ContactsContract
@@ -10,7 +10,6 @@ import com.github.chrisbanes.photoview.PhotoView
 data class GallerySelectData(
     @PrimaryKey(autoGenerate = true) var id: Int = 0,
     var imageName: String ?= null,
-    var uri: String ?= null
-) {
-}
+    var uri: Uri? = null
+)
 

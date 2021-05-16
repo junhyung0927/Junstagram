@@ -9,13 +9,23 @@ import android.content.Intent
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.junstagram.room.AppDatabase
-import com.example.junstagram.room.GallerySelectData
+import com.example.junstagram.model.GallerySelectData
 import com.example.junstagram.util.GalleryPermission
+import gun0912.tedimagepicker.builder.TedImagePicker
+
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
 class InsertFragment : BaseFragment<FragmentInsertBinding>(R.layout.fragment_insert) {
     private val insertViewModel: InsertViewModel by viewModel()
+    private val startForResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            binding.photoViewInsertImage.setImageURI(result.data?.data)
+
+            val gallerySelectData = GallerySelectData( 1, "select1", result.data?.data)
+            insertViewModel.insertGalleryImage(gallerySelectData)
+            binding.textViewSelectText.text = insertViewModel.getAllGalleryData().toString()
+        }
 
     companion object {
         fun newInstance() = InsertFragment()
@@ -28,29 +38,20 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(R.layout.fragment_ins
         binding.lifecycleOwner = this
 
         binding.apply {
-            GalleryPermission().galleryPermission(context)
-            pickFromGallery()
+            GalleryPermission().requestPermission(context) {
+                pickFromGallery()
+            }
         }
-
     }
 
     private fun pickFromGallery() {
         val intent = Intent(Intent.ACTION_PICK)
-        intent.setType("image/*")
-        val mimTypes = arrayOf(
-            "image/jpeg", "image/png"
-        )
-        intent.putExtra(KEY_GALLERY_ID_SELECT_IMAGE, mimTypes)
-        startForResult.launch(intent)
-    }
-
-    val startForResult =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
-            binding.photoViewInsertImage.setImageURI(result.data?.data)
-
-            val gallerySelectData = GallerySelectData(1, "select1", result.data?.data.toString())
-            AppDatabase.getInstance(requireContext()).GalleryDao().insertGalleryImage(gallerySelectData)
-            binding.textViewSelectText.text = AppDatabase.getInstance(requireContext()).GalleryDao().getAllGalleryData().toString()
+        val mimTypes = arrayOf("image/jpeg", "image/png")
+        intent.apply {
+            type = "image/*"
+            putExtra(KEY_GALLERY_ID_SELECT_IMAGE, mimTypes)
+            startForResult.launch(this)
         }
+    }
 }
 

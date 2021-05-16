@@ -1,6 +1,7 @@
 package com.example.junstagram.room
 
 import androidx.room.*
+import com.example.junstagram.model.GallerySelectData
 
 @Dao
 interface GalleryDao {

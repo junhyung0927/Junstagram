@@ -7,11 +7,12 @@ import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
 
 
-class GalleryPermission() {
-    fun galleryPermission(context: Context?) {
+class GalleryPermission {
+    fun requestPermission(context: Context?, onSuccess: () -> Unit) {
         TedPermission.with(context)
             .setPermissionListener(object : PermissionListener {
                 override fun onPermissionGranted() {
+                    onSuccess.invoke()
                     println("권한 허용 가능")
                 }
 
@@ -24,5 +25,4 @@ class GalleryPermission() {
             .setPermissions(Manifest.permission.CAMERA)
             .check()
     }
-
 }

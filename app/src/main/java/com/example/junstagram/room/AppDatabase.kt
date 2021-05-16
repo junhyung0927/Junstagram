@@ -2,28 +2,14 @@ package com.example.junstagram.room
 
 import android.content.Context
 import androidx.room.*
+import com.example.junstagram.model.GallerySelectData
 
-@Database(entities = [GallerySelectData::class], version = 1)
+@Database(entities = [GallerySelectData::class], version = 2)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase(){
-    abstract fun GalleryDao() : GalleryDao
+    abstract fun galleryDao() : GalleryDao
 
     companion object {
-        private var instance: AppDatabase? = null
-
-        fun getInstance(context: Context) : AppDatabase {
-            return instance ?: synchronized(this) {
-                instance ?: buildDatabase(context)
-            }
-        }
-
-        private fun buildDatabase(context: Context) : AppDatabase {
-            return Room.databaseBuilder(
-                context.applicationContext,
-                AppDatabase::class.java, "gallery-database"
-            )
-                .allowMainThreadQueries()
-                .build()
-        }
+        const val DATABASE_NAME = "gallery-database"
     }
 }
