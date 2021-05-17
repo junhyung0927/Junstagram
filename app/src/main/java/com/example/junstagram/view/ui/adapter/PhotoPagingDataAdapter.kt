@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.junstagram.databinding.UserItemBinding
 import com.example.junstagram.model.PhotoInfo
+import com.example.junstagram.view.ui.fragment.HomeFragment
 import com.example.junstagram.view.ui.fragment.HomeViewModel
 
 class PhotoPagingDataAdapter(val homeViewModel: HomeViewModel) :
@@ -35,6 +36,7 @@ class PhotoPagingDataAdapter(val homeViewModel: HomeViewModel) :
             binding.photoViewItemImage.setOnClickListener {
                 getItem(bindingAdapterPosition)?.let {
                     homeViewModel.callOnPhotoFocusEvent(it.image)
+
                 }
             }
         }
