@@ -25,13 +25,12 @@
             android:text = "@{databaseText}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-
             />
 
         <com.github.chrisbanes.photoview.PhotoView
             android:id="@+id/photoView_insert_image"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="0dp"
             android:src="@{imageId}"
             android:scaleType="centerInside"
             app:layout_constraintTop_toTopOf="parent"

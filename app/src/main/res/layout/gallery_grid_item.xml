@@ -3,6 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:bind="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="item"
+            type="int" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -12,10 +17,9 @@
             android:id="@+id/photoView_item_grid_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:src="@{item}"
             android:scaleType="centerInside"
             />
-
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

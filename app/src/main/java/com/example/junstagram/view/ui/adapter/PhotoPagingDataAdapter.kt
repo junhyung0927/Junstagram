@@ -17,9 +17,7 @@ class PhotoPagingDataAdapter(val homeViewModel: HomeViewModel) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoPagingViewHolder {
         return PhotoPagingViewHolder(
             UserItemBinding.inflate(
-                LayoutInflater.from(parent.context),
-                null,
-                false
+                LayoutInflater.from(parent.context), null, false
             )
         )
     }
@@ -30,13 +28,11 @@ class PhotoPagingDataAdapter(val homeViewModel: HomeViewModel) :
         }
     }
 
-    inner class PhotoPagingViewHolder(val binding: UserItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    inner class PhotoPagingViewHolder(val binding: UserItemBinding) : RecyclerView.ViewHolder(binding.root) {
         init {
             binding.photoViewItemImage.setOnClickListener {
                 getItem(bindingAdapterPosition)?.let {
                     homeViewModel.callOnPhotoFocusEvent(it.image)
-
                 }
             }
         }
@@ -50,15 +46,13 @@ class PhotoPagingDataAdapter(val homeViewModel: HomeViewModel) :
     companion object {
         val diffUtil = object : DiffUtil.ItemCallback<PhotoInfo>() {
             override fun areItemsTheSame(
-                oldItem: PhotoInfo,
-                newItem: PhotoInfo
+                oldItem: PhotoInfo, newItem: PhotoInfo
             ): Boolean {
                 return oldItem == newItem
             }
 
             override fun areContentsTheSame(
-                oldItem: PhotoInfo,
-                newItem: PhotoInfo
+                oldItem: PhotoInfo, newItem: PhotoInfo
             ): Boolean {
                 return oldItem.title == newItem.title
             }

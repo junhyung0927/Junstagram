@@ -8,9 +8,11 @@ import com.example.junstagram.view.base.BaseFragment
 import android.content.Intent
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.junstagram.room.AppDatabase
 import com.example.junstagram.model.GallerySelectData
 import com.example.junstagram.util.GalleryPermission
+import com.example.junstagram.view.ui.adapter.GalleryAdapter
 import gun0912.tedimagepicker.builder.TedImagePicker
 
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -39,7 +41,14 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(R.layout.fragment_ins
 
         binding.apply {
             GalleryPermission().requestPermission(context) {
-                pickFromGallery()
+//                pickFromGallery()
+                val galleryAdapter = GalleryAdapter(requireContext())
+                recyclerViewInsertFragment.apply {
+                    layoutManager = GridLayoutManager(requireContext(), 3)
+                    setHasFixedSize(true)
+
+                    adapter = galleryAdapter
+                }
             }
         }
     }
