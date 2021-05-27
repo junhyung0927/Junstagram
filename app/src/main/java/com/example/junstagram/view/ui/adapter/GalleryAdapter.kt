@@ -23,13 +23,13 @@ class GalleryAdapter(val context: Context) : RecyclerView.Adapter<GalleryAdapter
     }
 
     var selectedPhoto: Uri? = null
-    private val galleryPhotoList: MutableList<Uri>? = null
+    private val galleryPhotoList: MutableList<Uri> = mutableListOf()
     private val cursor: Cursor?
 
     init {
         val uri: Uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
         val columns: Array<String> = arrayOf(MediaStore.Images.Media.DATA)
-        val orderBy: String = MediaStore.Images.Media.DATE_ADDED + "DESC"
+        val orderBy: String = MediaStore.Images.Media.DATE_ADDED + " DESC"
 
         cursor = context.applicationContext.contentResolver.query(
             uri, columns, null, null, orderBy
@@ -42,7 +42,7 @@ class GalleryAdapter(val context: Context) : RecyclerView.Adapter<GalleryAdapter
                     val dataIndex: String = MediaStore.Images.Media.DATA
                     val imageLocation: String = cursor.getString(cursor.getColumnIndex(dataIndex))
                     val imageFile = File(imageLocation)
-                    galleryPhotoList?.add(Uri.fromFile(imageFile))
+                    galleryPhotoList.add(Uri.fromFile(imageFile))
                     count++
                 }
             }
@@ -58,25 +58,21 @@ class GalleryAdapter(val context: Context) : RecyclerView.Adapter<GalleryAdapter
     }
 
     override fun onBindViewHolder(holder: GalleryViewHolder, position: Int) {
-        var isSelected = false
-        val currentUri: Uri? = galleryPhotoList?.get(position)
-
-        Glide.with(context)
-            .load(currentUri)
-            .thumbnail(0.1f)
-            .into(holder.binding.photoViewItemGridImage)
-
-
+        holder.bind(galleryPhotoList.get(position))
     }
 
     override fun getItemCount(): Int {
-        return itemCount
+        return galleryPhotoList.size
     }
 
     inner class GalleryViewHolder(val binding: GalleryGridItemBinding) : RecyclerView.ViewHolder(binding.root) {
-    }
+        fun bind(uri: Uri){
+            var isSelected = false
 
-    fun setSelectedUri(selectedUri: Uri) {
-
+            Glide.with(context)
+                .load(uri)
+                .thumbnail(0.1f)
+                .into(binding.photoViewItemGridImage)
+        }
     }
 }

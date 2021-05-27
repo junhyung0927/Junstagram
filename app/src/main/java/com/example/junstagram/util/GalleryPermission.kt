@@ -22,7 +22,7 @@ class GalleryPermission {
                 }
             })
             .setDeniedMessage("앱을 실행하려면 권한을 허용해야 합니다.")
-            .setPermissions(Manifest.permission.CAMERA)
+            .setPermissions(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
             .check()
     }
 }

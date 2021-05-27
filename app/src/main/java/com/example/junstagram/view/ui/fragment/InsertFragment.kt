@@ -13,8 +13,6 @@ import com.example.junstagram.room.AppDatabase
 import com.example.junstagram.model.GallerySelectData
 import com.example.junstagram.util.GalleryPermission
 import com.example.junstagram.view.ui.adapter.GalleryAdapter
-import gun0912.tedimagepicker.builder.TedImagePicker
-
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
@@ -22,11 +20,11 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(R.layout.fragment_ins
     private val insertViewModel: InsertViewModel by viewModel()
     private val startForResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
-            binding.photoViewInsertImage.setImageURI(result.data?.data)
+//            binding.photoViewInsertImage.setImageURI(result.data?.data)
 
             val gallerySelectData = GallerySelectData( 1, "select1", result.data?.data)
             insertViewModel.insertGalleryImage(gallerySelectData)
-            binding.textViewSelectText.text = insertViewModel.getAllGalleryData().toString()
+//            binding.textViewSelectText.text = insertViewModel.getAllGalleryData().toString()
         }
 
     companion object {
