@@ -11,6 +11,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.junstagram.room.AppDatabase
 import com.example.junstagram.model.GallerySelectData
+import com.example.junstagram.util.EventObserver
 import com.example.junstagram.util.GalleryPermission
 import com.example.junstagram.view.ui.adapter.GalleryAdapter
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -19,12 +20,9 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class InsertFragment : BaseFragment<FragmentInsertBinding>(R.layout.fragment_insert) {
     private val insertViewModel: InsertViewModel by viewModel()
     private val startForResult =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
-//            binding.photoViewInsertImage.setImageURI(result.data?.data)
-
-            val gallerySelectData = GallerySelectData( 1, "select1", result.data?.data)
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult -> //            binding.photoViewInsertImage.setImageURI(result.data?.data)
+            val gallerySelectData = GallerySelectData(1, "select1", result.data?.data)
             insertViewModel.insertGalleryImage(gallerySelectData)
-//            binding.textViewSelectText.text = insertViewModel.getAllGalleryData().toString()
         }
 
     companion object {
@@ -36,11 +34,9 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(R.layout.fragment_ins
         super.onViewCreated(view, savedInstanceState)
 
         binding.lifecycleOwner = this
-
         binding.apply {
             GalleryPermission().requestPermission(context) {
-//                pickFromGallery()
-                val galleryAdapter = GalleryAdapter(requireContext())
+                val galleryAdapter = GalleryAdapter(requireContext(), insertViewModel)
                 recyclerViewInsertFragment.apply {
                     layoutManager = GridLayoutManager(requireContext(), 3)
                     setHasFixedSize(true)
@@ -49,16 +45,10 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(R.layout.fragment_ins
                 }
             }
         }
-    }
 
-    private fun pickFromGallery() {
-        val intent = Intent(Intent.ACTION_PICK)
-        val mimTypes = arrayOf("image/jpeg", "image/png")
-        intent.apply {
-            type = "image/*"
-            putExtra(KEY_GALLERY_ID_SELECT_IMAGE, mimTypes)
-            startForResult.launch(this)
-        }
+        insertViewModel.onGallerySelectedEvent.observe(viewLifecycleOwner, EventObserver {
+            binding.photoViewPreviewImageInsertFragment.setImageURI(it)
+        })
     }
 }
 

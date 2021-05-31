@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.ContentResolver
 import android.content.Context
 import android.database.Cursor
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.provider.MediaStore
 import android.view.LayoutInflater
@@ -14,9 +15,12 @@ import com.bumptech.glide.Glide
 import com.example.junstagram.databinding.GalleryGridItemBinding
 import com.example.junstagram.view.ui.fragment.InsertFragment
 import java.io.File
+import com.example.junstagram.util.whenReadyDraw
+import com.example.junstagram.view.ui.fragment.InsertViewModel
 import java.lang.Exception
 
-class GalleryAdapter(val context: Context) : RecyclerView.Adapter<GalleryAdapter.GalleryViewHolder>() {
+class GalleryAdapter(val context: Context, val insertViewModel: InsertViewModel) :
+    RecyclerView.Adapter<GalleryAdapter.GalleryViewHolder>() {
 
     companion object {
         private const val previewMaxCount = 25
@@ -66,13 +70,19 @@ class GalleryAdapter(val context: Context) : RecyclerView.Adapter<GalleryAdapter
     }
 
     inner class GalleryViewHolder(val binding: GalleryGridItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(uri: Uri){
-            var isSelected = false
+        fun bind(uri: Uri) {
+            var isSelected: Boolean? = false
 
-            Glide.with(context)
-                .load(uri)
-                .thumbnail(0.1f)
-                .into(binding.photoViewItemGridImage)
+            Glide.with(context).load(uri).thumbnail(0.1f).into(binding.photoViewItemGridImage)
+
+            //선택되었을 때 View 작업을 위한 변수
+            isSelected = selectedPhoto?.equals(uri)
+
+            binding.photoViewItemGridImage.setOnClickListener {
+                uri.let {
+                    insertViewModel.callOnGallerySelectedEvent(uri)
+                }
+            }
         }
     }
 }
