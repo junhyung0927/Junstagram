@@ -10,16 +10,18 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.junstagram.databinding.GalleryGridItemBinding
+import com.example.junstagram.util.whenReadyDraw as WhenReadyDraw
 import com.example.junstagram.view.ui.fragment.InsertFragment
 import java.io.File
-import com.example.junstagram.util.whenReadyDraw
 import com.example.junstagram.view.ui.fragment.InsertViewModel
+import org.koin.core.KoinApplication.Companion.init
 import java.lang.Exception
 
-class GalleryAdapter(val context: Context, val insertViewModel: InsertViewModel) :
+class GalleryAdapter(val context: Context, val insertViewModel: InsertViewModel, var lastClickedPosition: Int) :
     RecyclerView.Adapter<GalleryAdapter.GalleryViewHolder>() {
 
     companion object {
@@ -71,16 +73,18 @@ class GalleryAdapter(val context: Context, val insertViewModel: InsertViewModel)
 
     inner class GalleryViewHolder(val binding: GalleryGridItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(uri: Uri) {
-            var isSelected: Boolean? = false
-
             Glide.with(context).load(uri).thumbnail(0.1f).into(binding.photoViewItemGridImage)
 
-            //선택되었을 때 View 작업을 위한 변수
-            isSelected = selectedPhoto?.equals(uri)
+            if (lastClickedPosition.equals(bindingAdapterPosition)) {
+                insertViewModel.callOnGallerySelectedEvent(uri)
+                println("마지막 포지션 0이어야함: ${lastClickedPosition}")
+            }
 
             binding.photoViewItemGridImage.setOnClickListener {
                 uri.let {
-                    insertViewModel.callOnGallerySelectedEvent(uri)
+                    lastClickedPosition = bindingAdapterPosition
+                    notifyDataSetChanged()
+                    println("마지막 포지션: ${lastClickedPosition}")
                 }
             }
         }
