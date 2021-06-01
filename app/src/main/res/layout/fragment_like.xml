@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:text = "미완성"
+        android:text = "@string/fragment_like_body_text"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
