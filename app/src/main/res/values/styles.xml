@@ -14,7 +14,7 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
-    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
+    <style name="HeadTextTheme" parent="ThemeOverlay.AppCompat.Light">
         <item name="android:textSize">18sp</item>
         <item name="android:fontFamily">@font/sdsamliphopangche_ttf_outline</item>
     </style>

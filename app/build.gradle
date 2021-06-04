@@ -133,7 +133,9 @@ dependencies {
     // Koin AndroidX Experimental features
     //noinspection GradleDependency
     implementation "org.koin:koin-androidx-ext:$koin_version"
+    //lottie
+    implementation 'com.airbnb.android:lottie:3.7.0'
 
-    //tedimagepicker
+//tedimagepicker
     implementation "gun0912.ted:tedimagepicker:1.0.8"
 }

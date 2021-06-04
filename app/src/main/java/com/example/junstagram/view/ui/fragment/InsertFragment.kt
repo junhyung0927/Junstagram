@@ -41,12 +41,6 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(R.layout.fragment_ins
         const val KEY_GALLERY_ID_SELECT_IMAGE: String = Intent.EXTRA_MIME_TYPES
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val actionBar: ActionBar?
-
-        
-    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         var actionBar: ActionBar?
