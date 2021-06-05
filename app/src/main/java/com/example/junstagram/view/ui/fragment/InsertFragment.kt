@@ -26,9 +26,6 @@ import com.example.junstagram.util.whenReadyDraw as WhenReadyDraw
 class InsertFragment : BaseFragment<FragmentInsertBinding>(R.layout.fragment_insert) {
     private val insertViewModel: InsertViewModel by viewModel()
     private var lastClickedPosition = 0
-    init {
-
-    }
     private val startForResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             //binding.photoViewInsertImage.setImageURI(result.data?.data)
@@ -43,11 +40,9 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(R.layout.fragment_ins
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var actionBar: ActionBar?
 
         binding.lifecycleOwner = this
         binding.apply {
-
             GalleryPermission().requestPermission(context) {
                 val galleryAdapter = GalleryAdapter(requireContext(), insertViewModel, lastClickedPosition)
                 recyclerViewInsertFragment.apply {
