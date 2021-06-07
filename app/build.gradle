@@ -123,7 +123,7 @@ dependencies {
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"
     // Koin AndroidX Fragment features
     //noinspection GradleDependency
-    implementation "org.koin:koin-anㄴㅁㅇㄴdroidx-fragment:$koin_version"
+    implementation "org.koin:koin-androidx-fragment:$koin_version"
     // Koin AndroidX WorkManager
     //noinspection GradleDependency
     implementation "org.koin:koin-androidx-workmanager:$koin_version"
@@ -138,5 +138,4 @@ dependencies {
 
     //tedimagepicker
     implementation "gun0912.ted:tedimagepicker:1.0.8"
-
 }

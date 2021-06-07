@@ -9,6 +9,7 @@ import org.koin.dsl.module
 
 val dataSourceModule = module {
     single<PhotoDataSource> { PhotoRemoteDataSource(photoDataService = get()) }
-    single<LocalDataSource> { PhotoLocalDataSource(galleryDao = get() ) 
-    single<PhotoPagingSource> { PhotoPagingSource(photoDataSource = get()) }
+    single<LocalDataSource> { PhotoLocalDataSource(galleryDao = get() ) }
+    single<PhotoPagingSource> { PhotoPagingSource(photoDataSource = get()
+    ) }
 }

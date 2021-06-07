@@ -8,7 +8,8 @@ import com.example.junstagram.model.GallerySelectData
 import com.example.junstagram.model.PhotoInfo
 
 class PhotoRepositoryImpl(
-    val photoPagingSource: PhotoPagingSource
+    val photoPagingSource: PhotoPagingSource,
+    val photoLocalDataSource : LocalDataSource
 ) : PhotoRepository {
     override suspend fun getPhotoInfoList(): Pager<Int, PhotoInfo> {
         return Pager(PagingConfig(pageSize = 5)) {
