@@ -1,4 +1,3 @@
-
 package com.example.junstagram
 
 import android.app.Application
