@@ -1,49 +1,61 @@
 package com.example.junstagram.view.ui.fragment
 
+import android.app.ActionBar
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.example.junstagram.R
 import com.example.junstagram.databinding.FragmentInsertBinding
 import com.example.junstagram.view.base.BaseFragment
-import com.gun0912.tedpermission.TedPermission
-import com.gun0912.tedpermission.PermissionListener
-import android.Manifest
-import org.koin.android.ext.android.bind
+import android.content.Intent
+import android.view.ViewTreeObserver
+import android.view.Window
+import android.view.WindowManager
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.junstagram.room.AppDatabase
+import com.example.junstagram.model.GallerySelectData
+import com.example.junstagram.util.EventObserver
+import com.example.junstagram.util.GalleryPermission
+import com.example.junstagram.view.ui.adapter.GalleryAdapter
+import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.scope.fragmentScope
+import com.example.junstagram.util.whenReadyDraw as WhenReadyDraw
 
 class InsertFragment : BaseFragment<FragmentInsertBinding>(R.layout.fragment_insert) {
+    private val insertViewModel: InsertViewModel by viewModel()
+    private var lastClickedPosition = 0
+    private val startForResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            //binding.photoViewInsertImage.setImageURI(result.data?.data)
+            val gallerySelectData = GallerySelectData(1, "select1", result.data?.data)
+            insertViewModel.insertGalleryImage(gallerySelectData)
+        }
+
     companion object {
         fun newInstance() = InsertFragment()
+        const val KEY_GALLERY_ID_SELECT_IMAGE: String = Intent.EXTRA_MIME_TYPES
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        galleryPermission()
-
         binding.lifecycleOwner = this
-
         binding.apply {
-
+            GalleryPermission().requestPermission(context) {
+                val galleryAdapter = GalleryAdapter(requireContext(), insertViewModel, lastClickedPosition)
+                recyclerViewInsertFragment.apply {
+                    layoutManager = GridLayoutManager(requireContext(), 3)
+                    setHasFixedSize(true)
+                    adapter = galleryAdapter
+                }
+            }
         }
-    }
 
-    private fun galleryPermission() {
-        TedPermission.with(context)
-            .setPermissionListener(object : PermissionListener {
-                override fun onPermissionGranted() {
-                    println("권한 허용 가능")
-                }
-
-                override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
-                    for (i in deniedPermissions!!)
-                        println("권한 허용 불가능")
-                }
-            })
-            .setDeniedMessage("앱을 실행하려면 권한을 허용해야 합니다.")
-            .setPermissions(Manifest.permission.CAMERA)
-            .check()
+        insertViewModel.onGallerySelectedEvent.observe(viewLifecycleOwner, EventObserver {
+            binding.photoViewPreviewImageInsertFragment.setImageURI(it)
+        })
     }
 }
+

@@ -8,13 +8,15 @@
         <item name="colorAccent">@color/white</item>
     </style>
 
-    <!-- ### 여기 아래 부분 추가 ### -->
     <style name="FullScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowFullscreen">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
     </style>
 
-    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
+    <style name="HeadTextTheme" parent="ThemeOverlay.AppCompat.Light">
         <item name="android:textSize">18sp</item>
         <item name="android:fontFamily">@font/sdsamliphopangche_ttf_outline</item>
     </style>
+
 </resources>

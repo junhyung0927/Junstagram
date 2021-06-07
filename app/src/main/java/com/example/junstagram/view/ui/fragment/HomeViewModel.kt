@@ -8,10 +8,8 @@ import com.example.junstagram.util.Event
 import com.example.junstagram.view.base.BaseViewModel
 
 class HomeViewModel(private val photoRepository: PhotoRepository) : BaseViewModel() {
-    val photoList = liveData<PagingData<PhotoInfo>> {
-        //liveData
+    val photoList = liveData<PagingData<PhotoInfo>> { //liveData
         emitSource(photoRepository.getPhotoInfoList().liveData)
-
     }
 
     private val _onPhotoFocusEvent = MutableLiveData<Event<Int>>()
