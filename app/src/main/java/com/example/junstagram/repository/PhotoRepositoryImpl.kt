@@ -1,5 +1,6 @@
 package com.example.junstagram.repository
 
+import android.net.Uri
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import com.example.junstagram.data.LocalDataSource

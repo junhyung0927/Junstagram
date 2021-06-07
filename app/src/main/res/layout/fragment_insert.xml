@@ -46,7 +46,7 @@
                 />
 
             <Button
-                android:id="@+id/textView_addText_insertFragment"
+                android:id="@+id/button_addText_insertFragment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/add_text"
@@ -55,7 +55,6 @@
                 android:layout_alignParentEnd="true"
                 android:backgroundTint="@color/white"
                 tools:ignore="RelativeOverlap" />
-
         </RelativeLayout>
 
         <com.github.chrisbanes.photoview.PhotoView

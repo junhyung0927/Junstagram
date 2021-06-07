@@ -9,7 +9,6 @@ import com.github.chrisbanes.photoview.PhotoView
 @Entity
 data class GallerySelectData(
     @PrimaryKey(autoGenerate = true) var id: Int = 0,
-    var imageName: String ?= null,
     var uri: Uri? = null
 )
 

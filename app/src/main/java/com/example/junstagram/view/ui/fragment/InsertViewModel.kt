@@ -6,8 +6,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.junstagram.model.GallerySelectData
 import com.example.junstagram.repository.PhotoRepository
+import com.example.junstagram.room.GalleryDao
 import com.example.junstagram.util.Event
-
+import org.koin.android.ext.android.inject
 import com.example.junstagram.view.base.BaseViewModel
 
 class InsertViewModel(

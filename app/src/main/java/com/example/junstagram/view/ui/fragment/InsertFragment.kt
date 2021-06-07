@@ -14,24 +14,23 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.RoomDatabase
+import com.example.junstagram.di.roomModule
 import com.example.junstagram.room.AppDatabase
 import com.example.junstagram.model.GallerySelectData
+import com.example.junstagram.room.GalleryDao
 import com.example.junstagram.util.EventObserver
 import com.example.junstagram.util.GalleryPermission
 import com.example.junstagram.view.ui.adapter.GalleryAdapter
+import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.androidx.scope.fragmentScope
 import com.example.junstagram.util.whenReadyDraw as WhenReadyDraw
 
 class InsertFragment : BaseFragment<FragmentInsertBinding>(R.layout.fragment_insert) {
     private val insertViewModel: InsertViewModel by viewModel()
+    private val room: GalleryDao by inject()
     private var lastClickedPosition = 0
-    private val startForResult =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
-            //binding.photoViewInsertImage.setImageURI(result.data?.data)
-            val gallerySelectData = GallerySelectData(1, "select1", result.data?.data)
-            insertViewModel.insertGalleryImage(gallerySelectData)
-        }
 
     companion object {
         fun newInstance() = InsertFragment()
@@ -53,9 +52,16 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(R.layout.fragment_ins
             }
         }
 
-        insertViewModel.onGallerySelectedEvent.observe(viewLifecycleOwner, EventObserver {
-            binding.photoViewPreviewImageInsertFragment.setImageURI(it)
-        })
+        insertViewModel.apply {
+            onGallerySelectedEvent.observe(viewLifecycleOwner, EventObserver {
+                binding.photoViewPreviewImageInsertFragment.setImageURI(it)
+                val selectedUri = it
+                binding.buttonAddTextInsertFragment.setOnClickListener {
+                    val gallerySelectData = GallerySelectData(1,  selectedUri)
+                    insertGalleryImage(gallerySelectData)
+                }
+            })
+        }
     }
 }
 

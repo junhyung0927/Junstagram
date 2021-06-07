@@ -1,5 +1,6 @@
 package com.example.junstagram.data
 
+import android.net.Uri
 import com.example.junstagram.model.GallerySelectData
 
 interface LocalDataSource {
