@@ -14,9 +14,17 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
-    <style name="HeadTextTheme" parent="ThemeOverlay.AppCompat.Light">
-        <item name="android:textSize">18sp</item>
-        <item name="android:fontFamily">@font/sdsamliphopangche_ttf_outline</item>
+    <style name="Text.HeadTextTheme" parent="Theme.AppCompat.Light">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/main_head_text_size</item>
+        <item name="android:fontFamily">@font/head_text_font_style</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="Text.SplStyle" parent="android:TextAppearance">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/loading_head_text_size</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/head_text_font_style</item>
+    </style>
 </resources>

@@ -6,8 +6,18 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     >
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        style="@style/Text.SplStyle"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="@id/splash_lottie_view"
+        app:layout_constraintEnd_toEndOf="@id/splash_lottie_view"
+        app:layout_constraintBottom_toTopOf="@id/splash_lottie_view"
+        />
     <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/splash_lottie_view"
         android:layout_width="300dp"
         android:layout_height="300dp"
         app:lottie_rawRes="@raw/simple_loading"
