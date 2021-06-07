@@ -11,3 +11,6 @@
   * 제목, 내용, 이미지 추가
 * 메인 화면에 보이는 리스트는 사용자가 앱을 종료해도 보존되어야한다.
   * Room 사용
+
+### 설계 구성도
+![image](https://user-images.githubusercontent.com/29699217/120978084-10344f80-c7af-11eb-8910-ad303b5e3e6c.png)
