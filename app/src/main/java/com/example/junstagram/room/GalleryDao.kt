@@ -10,8 +10,8 @@ interface GalleryDao {
     fun getAllGalleryData() : List<GallerySelectData>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertGalleryImage(galleryData: GallerySelectData)
+    fun insertGalleryImage(vararg galleryData: GallerySelectData)
 
     @Delete
-    fun delete(id: GallerySelectData)
+    fun delete(vararg id: GallerySelectData)
 }

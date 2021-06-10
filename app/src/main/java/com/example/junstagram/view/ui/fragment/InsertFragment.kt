@@ -29,7 +29,6 @@ import com.example.junstagram.util.whenReadyDraw as WhenReadyDraw
 
 class InsertFragment : BaseFragment<FragmentInsertBinding>(R.layout.fragment_insert) {
     private val insertViewModel: InsertViewModel by viewModel()
-
     companion object {
         fun newInstance() = InsertFragment()
         const val KEY_GALLERY_ID_SELECT_IMAGE: String = Intent.EXTRA_MIME_TYPES
@@ -56,7 +55,6 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(R.layout.fragment_ins
                 binding.photoViewPreviewImageInsertFragment.setImageURI(selectedUri)
                 binding.buttonAddTextInsertFragment.setOnClickListener {
                     goToInput()
-
                     val gallerySelectData = GallerySelectData(uri = selectedUri)
                     insertGalleryImage(gallerySelectData)
                 }
