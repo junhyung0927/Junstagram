@@ -21,14 +21,14 @@ import com.example.junstagram.view.ui.fragment.InsertViewModel
 import org.koin.core.KoinApplication.Companion.init
 import java.lang.Exception
 
-class GalleryAdapter(val context: Context, val insertViewModel: InsertViewModel, var lastClickedPosition: Int) :
+class GalleryAdapter(val context: Context, val insertViewModel: InsertViewModel) :
     RecyclerView.Adapter<GalleryAdapter.GalleryViewHolder>() {
 
     companion object {
         private const val previewMaxCount = 25
     }
 
-    var selectedPhoto: Uri? = null
+    private var lastClickedPosition = 0
     private val galleryPhotoList: MutableList<Uri> = mutableListOf()
     private val cursor: Cursor?
 

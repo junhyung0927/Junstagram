@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Junstagram</string>
     <string name="cancel_text">취소</string>
-    <string name="add_text">추가</string>
+    <string name="add_text">다음</string>
     <string name="newImage_text">새 게시물</string>
     <string name="fragment_like_body_text">미완성</string>
     <string name="fragment_profile_body_text">미완성</string>

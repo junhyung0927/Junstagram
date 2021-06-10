@@ -26,7 +26,23 @@ class InsertViewModel(
     val onGallerySelectedEvent: LiveData<Event<Uri>>
         get() = _onGallerySelectedEvent
 
+    private val _status = MutableLiveData<Status>(Status.Init)
+    val status: LiveData<Status> = _status
+
     fun callOnGallerySelectedEvent(selectedUri: Uri) {
         _onGallerySelectedEvent.value = Event(selectedUri)
     }
+
+    fun goToInput() {
+        _status.value = Status.Input
+    }
+
+    fun goToInit() {
+        _status.value = Status.Init
+    }
+
+    enum class Status {
+        Init, Input
+    }
+
 }

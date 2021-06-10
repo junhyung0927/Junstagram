@@ -29,8 +29,6 @@ import com.example.junstagram.util.whenReadyDraw as WhenReadyDraw
 
 class InsertFragment : BaseFragment<FragmentInsertBinding>(R.layout.fragment_insert) {
     private val insertViewModel: InsertViewModel by viewModel()
-    private val room: GalleryDao by inject()
-    private var lastClickedPosition = 0
 
     companion object {
         fun newInstance() = InsertFragment()
@@ -42,8 +40,9 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(R.layout.fragment_ins
 
         binding.lifecycleOwner = this
         binding.apply {
+            status = insertViewModel.status.value
             GalleryPermission().requestPermission(context) {
-                val galleryAdapter = GalleryAdapter(requireContext(), insertViewModel, lastClickedPosition)
+                val galleryAdapter = GalleryAdapter(requireContext(), insertViewModel)
                 recyclerViewInsertFragment.apply {
                     layoutManager = GridLayoutManager(requireContext(), 3)
                     setHasFixedSize(true)
@@ -53,14 +52,16 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(R.layout.fragment_ins
         }
 
         insertViewModel.apply {
-            onGallerySelectedEvent.observe(viewLifecycleOwner, EventObserver {
-                binding.photoViewPreviewImageInsertFragment.setImageURI(it)
-                val selectedUri = it
+            onGallerySelectedEvent.observe(viewLifecycleOwner, EventObserver { selectedUri ->
+                binding.photoViewPreviewImageInsertFragment.setImageURI(selectedUri)
                 binding.buttonAddTextInsertFragment.setOnClickListener {
-                    val gallerySelectData = GallerySelectData(1,  selectedUri)
+                    goToInput()
+
+                    val gallerySelectData = GallerySelectData(uri = selectedUri)
                     insertGalleryImage(gallerySelectData)
                 }
             })
+
         }
     }
 }

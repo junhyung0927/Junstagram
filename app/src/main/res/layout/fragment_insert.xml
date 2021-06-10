@@ -10,6 +10,11 @@
         <variable
             name="databaseText"
             type="String" />
+        <variable
+            name="status"
+            type="com.example.junstagram.view.ui.fragment.InsertViewModel.Status" />
+        <import type="com.example.junstagram.view.ui.fragment.InsertViewModel.Status"/>
+        <import type="android.view.View"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -54,7 +59,8 @@
                 android:fontFamily="@font/cookierun_regular"
                 android:layout_alignParentEnd="true"
                 android:backgroundTint="@color/white"
-                tools:ignore="RelativeOverlap" />
+                tools:ignore="RelativeOverlap"
+                />
         </RelativeLayout>
 
         <com.github.chrisbanes.photoview.PhotoView
@@ -74,11 +80,16 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="vertical"
-
             app:layout_constraintTop_toBottomOf="@id/photoView_previewImage_insertFragment"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             />
+
+        <androidx.constraintlayout.widget.Group
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{status == Status.Init ? View.VISIBLE : View.INVISIBLE}"
+            app:constraint_referenced_ids="photoView_previewImage_insertFragment, recyclerView_insertFragment" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
