@@ -9,7 +9,6 @@ val repositoryModule = module {
         PhotoRepositoryImpl(
             photoPagingSource = get(),
             photoLocalDataSource = get(),
-
-            )
+        )
     }
 }

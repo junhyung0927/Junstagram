@@ -133,6 +133,7 @@ dependencies {
     // Koin AndroidX Experimental features
     //noinspection GradleDependency
     implementation "org.koin:koin-androidx-ext:$koin_version"
+
     //lottie
     implementation 'com.airbnb.android:lottie:3.7.0'
 
